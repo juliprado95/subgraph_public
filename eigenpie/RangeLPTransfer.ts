@@ -64,14 +64,9 @@ export function handleTransfer(event: TransferEvent): void {
   }
 }
 
-function calculateTransferRangeTVL(
-  rangeLPReceipt: RangeLPTransfer,
-  amount: BigInt
-): BigInt {
-  return rangeLPReceipt
-    .getUnderlyingBalancesByShare(amount)
-    .getAmount0()
-    .plus(rangeLPReceipt.getUnderlyingBalancesByShare(amount).getAmount1())
+function calculateTransferRangeTVL(rangeLPReceipt: RangeLPTransfer, amount: BigInt): BigInt {
+  let underlyingBalances = rangeLPReceipt.getUnderlyingBalancesByShare(amount);
+  return underlyingBalances.getAmount0().plus(underlyingBalances.getAmount1());
 }
 
 function getUserTransfer(
