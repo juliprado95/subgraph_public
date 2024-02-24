@@ -11,9 +11,9 @@ function updateLiquidity(contractAddress: Address, blockTimestamp: BigInt): void
         status = new mlrtLiquidityStatus("CurveLP-".concat(contractAddress.toHexString()))
     }
 
-    let storedBalabce = curveLp.get_balances()
-    status.token0Balance = storedBalabce[0]
-    status.token1Balance = storedBalabce[1]
+    let storedBalance = curveLp.get_balances()
+    status.token0Balance = storedBalance[0]
+    status.token1Balance = storedBalance[1]
     status.totalSupply = curveLp.totalSupply()
     status.mlrtPerShare = status.token0Balance.times(ETHER_ONE).div(status.totalSupply)
     status.updateTimestamp = blockTimestamp
